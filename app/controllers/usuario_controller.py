@@ -14,7 +14,7 @@ class UsuarioController:
             
             # Insertar el nuevo usuario en la base de datos
             cursor.execute("""
-                INSERT INTO usuarios (usuario, contrasena, nombre, apellido, documento, telefono, id_perfil) 
+                INSERT INTO usuario (usuario, contrasena, nombre, apellidos, documento, telefono, id_perfil) 
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
             """, (
                 usuario.usuario,
