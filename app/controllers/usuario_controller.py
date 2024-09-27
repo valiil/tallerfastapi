@@ -10,9 +10,8 @@ class UsuarioController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO usuarios (usuario,contrasena,nombre,apellido,documento,telefono,id_perfil) VALUES (%s, %s, %s, %s, %s ,%s,%s)", (usuario.usuario, usuario.contrasena, usuario.nombre, usuario.apellido, usuario.documento, usuario.telefono, usuario.id_perfil))
+            cursor.execute("INSERT INTO usuario (usuario,contrasena,nombre,apellido,documento,telefono,id_perfil) VALUES (%s, %s, %s, %s, %s ,%s,%s)", (usuario.usuario, usuario.contrasena, usuario.nombre, usuario.apellido, usuario.documento, usuario.telefono, usuario.id_perfil))
             conn.commit()
-            conn.close()
             return {"resultado": "Usuario creado"}
         except mysql.connector.Error as err:
             conn.rollback()
@@ -24,7 +23,7 @@ class UsuarioController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM usuarios WHERE id = %s", (usuario_id,))
+            cursor.execute("SELECT * FROM usuario WHERE id = %s", (usuario_id,))
             result = cursor.fetchone()
             payload = []
             content = {} 
@@ -56,7 +55,7 @@ class UsuarioController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM usuarios")
+            cursor.execute("SELECT * FROM usuario")
             result = cursor.fetchall()
             
             if not result:
