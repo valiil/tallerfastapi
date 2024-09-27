@@ -8,6 +8,7 @@ class UsuarioController:
         
     def create_usuario(self, usuario: Usuario):   
         try:
+            # Establecer la conexión con la base de datos
             conn = get_db_connection()
             cursor = conn.cursor()
             
@@ -24,22 +25,28 @@ class UsuarioController:
                 usuario.telefono,
                 usuario.id_perfil
             ))
-            
-            # Guardar los cambios
+
+            # Confirmar la transacción
             conn.commit()
             
-            # Cerrar la conexión
-            return {"resultado": "Usuario creado"}
+            # Devolver un mensaje de éxito
+            return {"resultado": "Usuario creado exitosamente"}
 
         except mysql.connector.Error as err:
+            # Imprimir el error en la consola para depurar
             print(f"Error en la base de datos: {err}")
             
-            # Si la conexión está activa, hacer rollback
+            # Si la conexión está activa, hacer rollback de la transacción
             if conn.is_connected():
                 conn.rollback()
             
-            # Lanza una excepción HTTP con detalle del error
-            raise HTTPException(status_code=500, detail=f"Error al crear el usuario: {err}")
+            # Lanzar una excepción HTTP con detalles del error
+            raise HTTPException(status_code=500, detail=f"Error al crear el usuario en la base de datos: {err}")
+
+        except Exception as e:
+            # Captura cualquier otra excepción no manejada y lanza un error 500 con el mensaje del error
+            print(f"Error desconocido: {e}")
+            raise HTTPException(status_code=500, detail=f"Error interno del servidor: {e}")
 
         finally:
             # Asegurarse de cerrar la conexión si está activa
