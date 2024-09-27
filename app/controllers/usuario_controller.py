@@ -10,13 +10,43 @@ class UsuarioController:
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO usuario (usuario,contrasena,nombre,apellido,documento,telefono,id_perfil) VALUES (%s, %s, %s, %s, %s ,%s,%s)", (usuario.usuario, usuario.contrasena, usuario.nombre, usuario.apellido, usuario.documento, usuario.telefono, usuario.id_perfil))
+            
+            # Insertar el nuevo usuario en la base de datos
+            cursor.execute("""
+                INSERT INTO usuarios (usuario, contrasena, nombre, apellido, documento, telefono, id_perfil) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (
+                usuario.usuario,
+                usuario.contrasena,
+                usuario.nombre,
+                usuario.apellido,
+                usuario.documento,
+                usuario.telefono,
+                usuario.id_perfil
+            ))
+            
+            # Guardar los cambios
             conn.commit()
+            
+            # Cerrar la conexión
             return {"resultado": "Usuario creado"}
+
         except mysql.connector.Error as err:
-            conn.rollback()
+            print(f"Error en la base de datos: {err}")
+            
+            # Si la conexión está activa, hacer rollback
+            if conn.is_connected():
+                conn.rollback()
+            
+            # Lanza una excepción HTTP con detalle del error
+            raise HTTPException(status_code=500, detail=f"Error al crear el usuario: {err}")
+
         finally:
-            conn.close()
+            # Asegurarse de cerrar la conexión si está activa
+            if conn.is_connected():
+                cursor.close()
+                conn.close()
+
         
 
     def get_usuario(self, usuario_id: int):
