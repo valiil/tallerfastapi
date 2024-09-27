@@ -80,13 +80,14 @@ class UsuarioController:
             return {"resultado": json_data}
         
         except mysql.connector.Error as err:
-            print(f"Error: {err}")
+            print(f"Error en la base de datos: {err}")
             conn.rollback()
-            raise HTTPException(status_code=500, detail="Database error")
+            raise HTTPException(status_code=500, detail=f"Database error: {err}")  # Devuelve el error al cliente
         
         finally:
             if conn.is_connected():
                 conn.close()
+
 
     
     
