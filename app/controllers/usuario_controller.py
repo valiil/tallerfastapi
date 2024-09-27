@@ -58,31 +58,36 @@ class UsuarioController:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM usuarios")
             result = cursor.fetchall()
+            
+            if not result:
+                raise HTTPException(status_code=404, detail="User not found")
+            
             payload = []
-            content = {} 
             for data in result:
-                content={
-                    'id':data[0],
-                    'usuario':data[1],
-                    'contrasena':data[2],
-                    'nombre':data[3],
-                    'apellido':data[4],
-                    'documento':data[5],
-                    'telefono':data[6],
-                    'id_perfil':data[7]    
+                content = {
+                    'id': data[0],
+                    'usuario': data[1],
+                    'contrasena': data[2],
+                    'nombre': data[3],
+                    'apellido': data[4],
+                    'documento': data[5],
+                    'telefono': data[6],
+                    'id_perfil': data[7]
                 }
                 payload.append(content)
-                content = {}
-            json_data = jsonable_encoder(payload)        
-            if result:
-               return {"resultado": json_data}
-            else:
-                raise HTTPException(status_code=404, detail="User not found")  
-                
+            
+            json_data = jsonable_encoder(payload)
+            return {"resultado": json_data}
+        
         except mysql.connector.Error as err:
+            print(f"Error: {err}")
             conn.rollback()
+            raise HTTPException(status_code=500, detail="Database error")
+        
         finally:
-            conn.close()
+            if conn.is_connected():
+                conn.close()
+
     
     
        
