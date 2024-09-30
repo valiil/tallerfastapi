@@ -125,6 +125,77 @@ class UsuarioController:
                 conn.close()
 
 
+    def update_usuario(self, usuario_id: int, usuario: Usuario):
+        try:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+
+            cursor.execute("""
+                UPDATE usuario 
+                SET usuario = %s, contrasena = %s, nombre = %s, apellidos = %s, documento = %s, telefono = %s, id_perfil = %s
+                WHERE id = %s
+            """, (
+                usuario.usuario,
+                usuario.contrasena,
+                usuario.nombre,
+                usuario.apellido,
+                usuario.documento,
+                usuario.telefono,
+                usuario.id_perfil,
+                usuario_id
+            ))
+
+            conn.commit()
+
+            
+            if cursor.rowcount == 0:
+                raise HTTPException(status_code=404, detail="User not found")
+
+
+            return {"resultado": "Usuario actualizado exitosamente"}
+
+        except mysql.connector.Error as err:
+            print(f"Error en la base de datos: {err}")
+            if conn.is_connected():
+                conn.rollback()
+            raise HTTPException(status_code=500, detail=f"Error al actualizar el usuario en la base de datos: {err}")
+
+        finally:
+            if conn.is_connected():
+                cursor.close()
+                conn.close()
+
+    def delete_usuario(self, usuario_id: int):
+        try:
+            
+            conn = get_db_connection()
+            cursor = conn.cursor()
+
+            
+            cursor.execute("DELETE FROM usuario WHERE id = %s", (usuario_id,))
+
+            
+            conn.commit()
+
+            
+            if cursor.rowcount == 0:
+                raise HTTPException(status_code=404, detail="User not found")
+
+            
+            return {"resultado": "Usuario eliminado exitosamente"}
+
+        except mysql.connector.Error as err:
+            print(f"Error en la base de datos: {err}")
+            if conn.is_connected():
+                conn.rollback()
+            raise HTTPException(status_code=500, detail=f"Error al eliminar el usuario en la base de datos: {err}")
+
+        finally:
+            if conn.is_connected():
+                cursor.close()
+                conn.close()
+
+
     
     
        
