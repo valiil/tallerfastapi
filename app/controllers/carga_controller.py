@@ -60,6 +60,7 @@ class CargaController:
                 cursor.close()
                 conn.close()
 
+        
     def get_carga(self, carga_id: int):
         try:
             conn = get_db_connection()

@@ -4,7 +4,7 @@ FROM python:3.10-slim
 # Establecemos el directorio de trabajo en el contenedor
 WORKDIR /app
 
-# Copiamos los archivos requeridos a la imagen
+# Copiamos los archivos de requerimientos si los tienes
 COPY requirements.txt .
 
 # Instalamos las dependencias necesarias
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para iniciar la aplicación
-CMD ["python", "app.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
