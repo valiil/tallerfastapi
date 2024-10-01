@@ -1,7 +1,7 @@
 import mysql.connector
 from fastapi import HTTPException
-from config.db_config import get_db_connection
-from models.perfil_model import Perfil
+from app.config.db_config import get_db_connection
+from app.models.perfil_model import Perfil
 from fastapi.encoders import jsonable_encoder
 
 class PerfilController:

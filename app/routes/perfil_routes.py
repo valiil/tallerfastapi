@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from controllers.perfil_controller import PerfilController
-from models.perfil_model import Perfil
+from app.controllers.perfil_controller import PerfilController
+from app.models.perfil_model import Perfil
 
 router = APIRouter()
 

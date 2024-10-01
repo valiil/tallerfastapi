@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from controllers.carga_controller import CargaController  # Cambiado a CargaController
-from models.carga_model import Carga  # Cambiado a Carga
+from app.controllers.carga_controller import CargaController  # Cambiado a CargaController
+from app.models.carga_model import Carga  # Cambiado a Carga
 
 router = APIRouter()
 

@@ -1,7 +1,7 @@
 import mysql.connector
 from fastapi import HTTPException
-from config.db_config import get_db_connection
-from models.transporte_model import Transporte
+from app.config.db_config import get_db_connection
+from app.models.transporte_model import Transporte
 from fastapi.encoders import jsonable_encoder
 
 class TransporteController:

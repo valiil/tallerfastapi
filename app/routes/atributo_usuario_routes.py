@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from controllers.atributo_usuario_controller import AtributoUsuarioController  # Cambiado a AtributoUsuarioController
-from models.atributo_usuario_model import AtributoUsuario  # Cambiado a AtributoUsuario
+from app.controllers.atributo_usuario_controller import AtributoUsuarioController  # Cambiado a AtributoUsuarioController
+from app.models.atributo_usuario_model import AtributoUsuario  # Cambiado a AtributoUsuario
 
 router = APIRouter()
 
