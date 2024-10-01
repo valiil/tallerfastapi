@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.controllers.transporte_controller import *
+from app.controllers.transporte_controller import TransporteController
 from app.models.transporte_model import Transporte
 
 router = APIRouter()

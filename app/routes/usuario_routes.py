@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.controllers.usuario_controller import *
+from app.controllers.usuario_controller import UsuarioController
 from app.models.usuario_model import Usuario
 
 router = APIRouter()
