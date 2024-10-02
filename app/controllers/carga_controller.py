@@ -1,7 +1,7 @@
 import mysql.connector
 from fastapi import HTTPException
 from app.config.db_config import get_db_connection
-from app.models.carga_model import Carga  # Asegúrate de que este modelo exista
+from app.models.carga_model import Carga  
 from fastapi.encoders import jsonable_encoder
 
 class CargaController:
@@ -215,4 +215,4 @@ class CargaController:
                 cursor.close()
                 conn.close()
 
-# carga_controller = CargaController()  # Actualiza esta línea si es necesario
+# carga_controller = CargaController()  

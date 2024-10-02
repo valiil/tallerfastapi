@@ -1,7 +1,7 @@
 import mysql.connector
 from fastapi import HTTPException
 from app.config.db_config import get_db_connection
-from app.models.atributo_usuario_model import AtributoUsuario  # Asegúrate de que este modelo exista
+from app.models.atributo_usuario_model import AtributoUsuario  
 from fastapi.encoders import jsonable_encoder
 
 class AtributoUsuarioController:
@@ -178,4 +178,4 @@ class AtributoUsuarioController:
                 cursor.close()
                 conn.close()
 
-# atributo_usuario_controller = AtributoUsuarioController()  # Actualiza esta línea si es necesario
+# atributo_usuario_controller = AtributoUsuarioController()  

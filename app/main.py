@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from app.routes.usuario_routes import router as usuario_router
-from app.routes.transporte_routes import router as transporte_router  # Mantenemos el modelo Transporte
-from app.routes.perfil_routes import router as perfil_router  # Agregamos el nuevo router para Perfil
-from app.routes.atributo_routes import router as atributo_router  # Agregamos el router para Atributo
-from app.routes.atributo_usuario_routes import router as atributo_usuario_router  # Agregamos el router para Atributo Usuario
+from app.routes.transporte_routes import router as transporte_router  
+from app.routes.perfil_routes import router as perfil_router  
+from app.routes.atributo_routes import router as atributo_router  
+from app.routes.atributo_usuario_routes import router as atributo_usuario_router  
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -24,10 +24,10 @@ app.add_middleware(
 )
 
 app.include_router(usuario_router)
-app.include_router(transporte_router)  # Mantener el transporte
-app.include_router(perfil_router)  # Incluir el perfil
-app.include_router(atributo_router)  # Incluir el nuevo router para Atributo
-app.include_router(atributo_usuario_router)  # Incluir el nuevo router para Atributo Usuario
+app.include_router(transporte_router)  
+app.include_router(perfil_router) 
+app.include_router(atributo_router)  
+app.include_router(atributo_usuario_router)  
 
 #if __name__ == "__main__":
 #    import uvicorn
