@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from routes.usuario_routes import router as usuario_router
-from routes.transporte_routes import router as transporte_router  # Mantenemos el modelo Transporte
-from routes.perfil_routes import router as perfil_router  # Agregamos el nuevo router para Perfil
-from routes.atributo_routes import router as atributo_router  # Agregamos el router para Atributo
-from routes.atributo_usuario_routes import router as atributo_usuario_router  # Agregamos el router para Atributo Usuario
+from app.routes.usuario_routes import router as usuario_router
+from app.routes.transporte_routes import router as transporte_router  # Mantenemos el modelo Transporte
+from app.routes.perfil_routes import router as perfil_router  # Agregamos el nuevo router para Perfil
+from app.routes.atributo_routes import router as atributo_router  # Agregamos el router para Atributo
+from app.routes.atributo_usuario_routes import router as atributo_usuario_router  # Agregamos el router para Atributo Usuario
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
