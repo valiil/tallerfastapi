@@ -1,0 +1,41 @@
+# Ignorar el entorno virtual
+myenv/
+
+# Ignorar archivos compilados de Python
+__pycache__/
+*.py[cod]
+
+# Ignorar archivos de distribución/packaging
+.Python
+build/
+dist/
+*.egg-info/
+
+# Ignorar logs
+*.log
+
+# Ignorar archivos de configuración del IDE
+.idea/
+.vscode/
+
+# Ignorar archivos de configuración de entorno
+.env
+.env.*
+
+# Ignorar archivos de prueba
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# Ignorar Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignorar archivos de bases de datos locales
+*.sqlite3
+*.db
+
+# Otros
+*.bak
+*.tmp
