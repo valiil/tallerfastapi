@@ -7,6 +7,8 @@ from routes.atributo_usuario_routes import router as atributo_usuario_router
 from routes.carga_masiva_routes import router as carga_masiva_router
 from routes.carga_routes import router as carga_router
 from routes.loginRequest_routes import router as loginRequest_router
+from routes.cargaTransportador_routes import router as cargaTransportador_router
+from routes.cargaEmpresa_routes import router as cargaEmpresa_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -34,6 +36,8 @@ app.include_router(atributo_usuario_router)
 app.include_router(carga_masiva_router)
 app.include_router(carga_router) 
 app.include_router(loginRequest_router)  
+app.include_router(cargaTransportador_router) 
+app.include_router(cargaEmpresa_router) 
 
 if __name__ == "__main__":
    import uvicorn
